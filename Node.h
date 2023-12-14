@@ -29,13 +29,24 @@ private:
 	STATUS status_;	// 現在の状態
 	int cost_;		// 実コスト
 	int h_cost_;	// 推定コスト
-	Node* parent_;	// 親ノードのポインタ
+	int score_;		// 評価値
+	CELL* parent_;	// 親のポインタ
 
 public:
-	Node(CELL pos, Node* p)
-		: myPos_(pos), status_(STATUS::NONE), cost_(-1), h_cost_(-1), parent_(p) {};
-	~Node() {};
+	Node(CELL pos, CELL* p);
+	~Node();
 
-	// コストを取得
 	int GetCost() { return cost_; };
+	int GetHCost() { return h_cost_; };
+	int GetScore() { return score_; };
+
+	/// <summary>コストを計算</summary>
+	/// <param name="c">移動に掛かるコスト</param>
+	/// <param name="p">親のコスト</param>
+	void CalcCost(int c, int p);
+	/// <summary>推定コストを計算</summary>
+	/// <param name="g">ゴールのセル情報</param>
+	void CalcHCost(CELL& g);
+	/// <summary>スコアを評価</summary>
+	void CalcScore();
 };
