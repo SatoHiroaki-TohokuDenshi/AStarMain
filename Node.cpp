@@ -23,3 +23,7 @@ void Node::CalcScore() {
 	if (cost_ > h_cost_) score_ = cost_;
 	else				 score_ = h_cost_;
 }
+
+void Node::AddChild(Node* c) {
+	childList_.push_back(c);
+}

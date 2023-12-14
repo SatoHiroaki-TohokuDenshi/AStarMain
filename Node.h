@@ -1,4 +1,5 @@
 #pragma once
+#include <list>
 
 // 2次元座標を表す構造体
 struct CELL {
@@ -6,6 +7,8 @@ struct CELL {
 	int y_;		// y座標
 
 	// コンストラクタ
+	CELL()
+		: x_(-1), y_(-1) {};
 	CELL(int x, int y)
 		: x_(x), y_(y) {};
 
@@ -31,6 +34,7 @@ private:
 	int h_cost_;	// 推定コスト
 	int score_;		// 評価値
 	CELL* parent_;	// 親のポインタ
+	std::list<Node*> childList_;
 
 public:
 	Node(CELL pos, CELL* p);
@@ -49,4 +53,6 @@ public:
 	void CalcHCost(CELL& g);
 	/// <summary>スコアを評価</summary>
 	void CalcScore();
+
+	void AddChild(Node* c);
 };
