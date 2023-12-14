@@ -13,7 +13,7 @@ AStar::AStar() {
 
 	for (int x = 0; x < map_.size(); x++) {
 		for (int y = 0; y < map_[x].size(); y++) {
-			map_[x][y] = nullptr;
+			map_[x][y] = 0;
 		}
 	}
 }
@@ -31,7 +31,7 @@ AStar::AStar(int x, int y) {
 
 	for (int x = 0; x < map_.size(); x++) {
 		for (int y = 0; y < map_[x].size(); y++) {
-			map_[x][y] = nullptr;
+			map_[x][y] = 0;
 		}
 	}
 }
@@ -54,4 +54,11 @@ void AStar::SetGoa(CELL& g) {
 
 void AStar::SetGoal(int x, int y) {
 	goalCell_ = CELL(x, y);
+}
+
+void AStar::StartSearch() {
+	CELL nullCell(-1, -1);
+	if (startCell_ == nullCell || goalCell_ == nullCell) return;
+
+	Node a_star(startCell_, nullptr);
 }
